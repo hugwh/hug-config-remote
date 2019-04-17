@@ -66,3 +66,6 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+wechat:
+  appId: wx705160412f81ba33
+  AppSecret: 2dd705d63f7b8cc8172329a697b6e69d
