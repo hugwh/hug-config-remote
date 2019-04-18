@@ -69,3 +69,8 @@ mybatis-plus:
 wechat:
   appId: wx705160412f81ba33
   AppSecret: 2dd705d63f7b8cc8172329a697b6e69d
+wechat-test:
+  appId: wxe4782be5853a0fea
+  AppSecret: d0a83887d88da9b4c3fdb5118217afe3
+  url: http://hugwh.w3.luyouxia.net/
+  token: hugwh
