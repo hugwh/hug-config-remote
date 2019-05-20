@@ -1,12 +1,17 @@
 server:
-  port: 1003
+  port: 28003
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8001/eureka/
 spring:
   application:
-    name: hug-wechat-server
+    name: hug-demo-server
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
   redis:
     host: 120.79.197.55
     password:
@@ -24,6 +29,13 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener: # 这里配置了重试策略
+      direct:
+        retry:
+          enabled: true
+      simple:
+        retry:
+          enabled: true
   datasource:
     url: jdbc:mysql://120.79.197.55:3306/test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
@@ -40,7 +52,7 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.hug.wechat.api.entity
+  typeAliasesPackage: com.hug.demo.api.entity
   #typeEnumsPackage: com.baomidou.springboot.entity.enums
   global-config:
     #刷新mapper 调试神器
@@ -58,7 +70,7 @@ mybatis-plus:
       logic-not-delete-value: 0
       db-type: mysql
     refresh: true
-      #自定义填充策略接口实现
+    #自定义填充策略接口实现
     #meta-object-handler: com.baomidou.springboot.xxx
     #自定义SQL注入器
   #sql-injector: com.baomidou.mybatisplus.extension.injector.LogicSqlInjector
@@ -66,11 +78,11 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-wechat:
-  appId: wx705160412f81ba33
-  AppSecret: 2dd705d63f7b8cc8172329a697b6e69d
-wechat-test:
-  appId: wxe4782be5853a0fea
-  AppSecret: d0a83887d88da9b4c3fdb5118217afe3
-  url: http://hugwh.w3.luyouxia.net/
-  token: hugwh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+test:
+  bus:
+    name: 456

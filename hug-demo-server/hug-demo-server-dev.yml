@@ -7,6 +7,11 @@ eureka:
 spring:
   application:
     name: hug-demo-server
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
   redis:
     host: 120.79.197.55
     password:
@@ -24,6 +29,13 @@ spring:
     port: 5672
     username: guest
     password: guest
+    listener: # 这里配置了重试策略
+      direct:
+        retry:
+          enabled: true
+      simple:
+        retry:
+          enabled: true
   datasource:
     url: jdbc:mysql://120.79.197.55:3306/test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
@@ -66,3 +78,11 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     cache-enabled: false
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+test:
+  bus:
+    name: 456
