@@ -23,7 +23,19 @@ spring:
         - name: Hystrix
           args:
             name: fallbackcmd
-            fallbackUri: forward:/controller
+            fallbackUri: forward:/fallback
+      - id: hug-wechat-client
+        uri: lb://hug-wechat-client
+        predicates:
+        - Path=/wechat/**
+        filters:
+        #在转发之前将/demo去掉
+        #- StripPrefix=1
+        #            - name: RateLimiter
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
   redis:
     host: 120.79.197.55
     password:
