@@ -10,7 +10,7 @@ spring:
           uri: https://github.com/hugwh/hug-config-remote.git
           search-paths: '{application}'
           username: hugwh
-          password: Hwh118122
+          password: @Hwh118122
     bus:
       enabled: true
       trace:
