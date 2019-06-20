@@ -50,8 +50,6 @@ spring:
         min-idle: 0 # 连接池中的最小空闲连接默认 0
   hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
 eureka:
-  instance-id: ${spring.cloud.client.ip-address}:${server.port}
-    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8001/eureka/
